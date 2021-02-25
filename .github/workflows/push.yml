@@ -1,44 +1,35 @@
-# This is a basic workflow that runs if the commit author is 
-#listed as a member of the associated organization or is the owner of the (personal) repo
-
-name: Push testing
-
-# Controls when the action will run. 
-
-#on: issue_comment
-on: 
-  push:
-    branches: [ main ]
-
-## Allows you to run this workflow manually from the Actions tab
-  #workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  pushtest:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-         
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        if: github.event_name == 'push'
-        with:
-          fetch-depth: 0
-      # Runs a single command using the runners shell
-      - name: Push testing on external Gitlab
-        uses: adityakavalur/gitlab-mirror-and-ci-action@secure
-        with:
-          args: "https://gitlab.com/aditya.kavalur/pr-testing-github-workflow.git"
-        env:
-          GITLAB_HOSTNAME: "gitlab.com"
-          GITLAB_USERNAME: "aditya.kavalur"
-          #The below password is really a PAT, needs write
-          GITLAB_PASSWORD: ${{ secrets.GITLAB_PASSWORD_ALL }}
-          GITLAB_PROJECT_ID: "23857406"
-          #The below password is really a PAT, needs read
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          POLL_TIMEOUT: "120"
-          GITHUB_EVENT_NAME: github.event_name
+## This is a basic workflow that runs if the commit author is 
+##listed as a member of the associated organization or is the owner of the (personal) repo
+#name: Push testing
+## Controls when the action will run. 
+#on: 
+#  push:
+#    branches: [ main ]
+## A workflow run is made up of one or more jobs that can run sequentially or in parallel
+#jobs:
+#  # This workflow contains a single job called "build"
+#  pushtest:
+#    # The type of runner that the job will run on
+#    runs-on: ubuntu-latest
+#    # Steps represent a sequence of tasks that will be executed as part of the job
+#    steps:         
+#      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#      - uses: actions/checkout@v2
+#        if: github.event_name == 'push'
+#        with:
+#          fetch-depth: 0
+#      # Runs a single command using the runners shell
+#      - name: Push testing on external Gitlab
+#        uses: adityakavalur/gitlab-mirror-and-ci-action@secure
+#        with:
+#          args: "https://gitlab.com/aditya.kavalur/pr-testing-github-workflow.git"
+#        env:
+#          GITLAB_HOSTNAME: "gitlab.com"
+#          GITLAB_USERNAME: "aditya.kavalur"
+#          #The below password is really a PAT, needs write
+#          GITLAB_PASSWORD: ${{ secrets.GITLAB_PASSWORD_ALL }}
+#          GITLAB_PROJECT_ID: "23857406"
+#          #The below password is really a PAT, needs read
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          POLL_TIMEOUT: "120"
+#          GITHUB_EVENT_NAME: github.event_name
