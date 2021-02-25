@@ -3,12 +3,6 @@
 # comments with the triggerstring
 
 name: PR Label
-# Controls when the action will run. 
-
-#on:
-#  pull_request:
-#    types:
-#      - labeled
 
 on: 
   pull_request_target:
@@ -20,13 +14,9 @@ jobs:
   # This workflow contains a single job called "build"
   PR_Label:
     # The type of runner that the job will run on
-#    if: github.event.label.name == 'triggerlabel'
     runs-on: ubuntu-latest
-#    if: ${{ github.event.issue.pull_request }}
     steps:
       - uses: actions/checkout@v2
-        #if: ${{ github.event_name == 'pull_request' && failure() }}
-        #if: github.event_name == 'pull_request'
         with:
           fetch-depth: 0
       # Runs a single command using the runners shell
