@@ -1,2 +1,2 @@
 # pr-testing-github-workflow
-on branch: main, push testing workflow-comment approval attempt based on sha
+on branch: main, fork_pr testing workflow-comment approval attempt based on sha
